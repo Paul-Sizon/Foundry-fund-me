@@ -2,8 +2,8 @@
 pragma solidity ^0.8.27;
 
 import {Test, console} from "forge-std/Test.sol";
-import {FundMe} from "../src/FundMe.sol";
-import {DeployFundMe} from "../script/DeployFundMe.s.sol";
+import {FundMe} from "../../src/FundMe.sol";
+import {DeployFundMe} from "../../script/DeployFundMe.s.sol";
 
 contract FundMeTest is Test {
     FundMe fundMe;
@@ -101,6 +101,37 @@ contract FundMeTest is Test {
         vm.txGasPrice(GAS_PRICE);
         vm.startPrank(fundMe.getOwner());
         fundMe.withdraw();
+        vm.stopPrank();
+
+        uint256 gasEnd = gasleft();
+        uint256 gasUsed = (gasStart - gasEnd) * tx.gasprice;
+        console.log("Gas used: ", gasUsed);
+
+        //  Assert
+        assertEq(address(fundMe).balance, 0);
+        assertEq(fundMe.getOwner().balance, startingOwnerBalance + startingFundMeBalance);
+
+    }
+
+    function testWithdrawFromMultipleFundersCheaper() public funded {
+        //  Arrange
+        uint160 numberOfFunders = 10;
+        uint160 startingFunderIndex = 1;
+
+        for (uint160 i = startingFunderIndex; i < numberOfFunders; i++) {
+            hoax(address(i), AMOUNT);
+            fundMe.fund{value: AMOUNT}();
+        }
+
+        uint256 startingOwnerBalance = fundMe.getOwner().balance;
+        uint256 startingFundMeBalance = address(fundMe).balance;
+
+        //  Act
+        uint256 gasStart = gasleft();
+
+        vm.txGasPrice(GAS_PRICE);
+        vm.startPrank(fundMe.getOwner());
+        fundMe.cheaperWithdraw();
         vm.stopPrank();
 
         uint256 gasEnd = gasleft();

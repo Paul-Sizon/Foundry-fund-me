@@ -4,4 +4,6 @@ out = "out"
 libs = ["lib"]
 remappings = ["@chainlink/contracts/=lib/chainlink-brownie-contracts/contracts/", "@openzeppelin/=lib/openzeppelin-contracts"]
 
+ffi = true  # Be careful with this option as it allows the execution of external scripts and programs, which can pose security risks if not properly vetted.
+
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
