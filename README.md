@@ -1,9 +1,9 @@
 ## Classical Foundry FundMe
 
 Includes:
-- Working secure and gas-optimized contract
+- Functional, secure and gas-optimized smart contract
 - Foundry environment
-- 
-- Feature 2
-- Feature 3
+- Unit, inegration and fork tests
+- Foundry deployment scripts
+- Chainlink price aggregator and mock aggregators
 
