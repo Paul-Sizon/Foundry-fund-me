@@ -3,7 +3,8 @@ pragma solidity ^0.8.18;
 
 // Note: The AggregatorV3Interface might be at a different location than what was in the video!
 // lib/chainlink-brownie-contracts/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol
-import {AggregatorV3Interface} from "lib/chainlink-brownie-contracts/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
+import {AggregatorV3Interface} from
+    "lib/chainlink-brownie-contracts/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
 import {PriceConverter} from "./PriceConverter.sol";
 
 error NotOwner();
@@ -28,7 +29,6 @@ contract FundMe {
         s_addressToAmountFunded[msg.sender] += msg.value;
         s_funders.push(msg.sender);
     }
-
 
     modifier onlyOwner() {
         // require(msg.sender == owner);
@@ -77,8 +77,7 @@ contract FundMe {
     //  /        \
     //receive()  fallback()
 
-
-       /**
+    /**
      * Getter Functions
      */
 

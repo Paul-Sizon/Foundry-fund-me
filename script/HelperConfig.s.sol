@@ -12,7 +12,6 @@ contract HelperConfig is Script {
     uint8 public constant DECIMALS = 8;
     int256 public constant INITIAL_ANSWER = 2000e8;
 
-
     NetworkConfig public activeNetworkConfig;
 
     struct NetworkConfig {
@@ -32,12 +31,10 @@ contract HelperConfig is Script {
     }
 
     function getOrCreateAnvilEthConfig() public returns (NetworkConfig memory) {
-        
         if (activeNetworkConfig.priceFeed != address(0)) {
             // so that we dont deploy a new mock contract everytime, saving the environment
             return activeNetworkConfig;
         }
-
 
         vm.startBroadcast();
         MockV3Aggregator mockPriceFeed = new MockV3Aggregator(DECIMALS, INITIAL_ANSWER);

@@ -110,7 +110,6 @@ contract FundMeTest is Test {
         //  Assert
         assertEq(address(fundMe).balance, 0);
         assertEq(fundMe.getOwner().balance, startingOwnerBalance + startingFundMeBalance);
-
     }
 
     function testWithdrawFromMultipleFundersCheaper() public funded {
@@ -141,7 +140,6 @@ contract FundMeTest is Test {
         //  Assert
         assertEq(address(fundMe).balance, 0);
         assertEq(fundMe.getOwner().balance, startingOwnerBalance + startingFundMeBalance);
-
     }
 
     receive() external payable {}

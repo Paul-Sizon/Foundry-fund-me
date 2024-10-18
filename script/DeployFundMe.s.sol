@@ -14,10 +14,10 @@ contract DeployFundMe is Script {
 
         // after transaction - real tx
         vm.startBroadcast();
-        
+
         // Deploy the FundMe contract
-        FundMe fundMe = new FundMe (ethUsdPriceFeed);
-        
+        FundMe fundMe = new FundMe(ethUsdPriceFeed);
+
         vm.stopBroadcast();
 
         return fundMe;
