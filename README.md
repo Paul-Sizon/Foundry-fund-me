@@ -1,4 +1,4 @@
-## Classical Foundry FundMe
+## Classic Foundry FundMe
 
 Includes:
 - Functional, secure and gas-optimized smart contract
